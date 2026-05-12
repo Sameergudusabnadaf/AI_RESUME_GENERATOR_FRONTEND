@@ -61,11 +61,69 @@ A modern, interactive web application built with Next.js that guides users throu
 ```text
 src/
 ├── app/            # Next.js App Router (pages and layouts)
-├── components/     # Reusable UI components (buttons, inputs, etc.)
-├── services/       # API service layers for backend communication
-├── store/          # Zustand state management
-├── types/          # TypeScript interfaces and types
-└── utils/          # Helper functions and formatting logic
+│   ├── builder/    # Main resume builder interface
+│   └── resume/     # Resume view/management
+├── components/     # UI components
+│   ├── chatbot/    # Chat interface components
+│   ├── pdf/        # PDF generation components
+│   ├── preview/    # Real-time resume preview
+│   └── ui/         # Base shadcn/ui components
+├── services/       # API communication (Axios)
+├── store/          # Global state (Zustand)
+├── types/          # TypeScript definitions
+└── utils/          # Helper functions
+```
+
+## 📐 Architecture
+
+The application follows a modern decoupled architecture with a centralized state management system.
+
+```mermaid
+graph TD
+    subgraph "Frontend (Next.js)"
+        UI[User Interface - React Components]
+        CS[Chat Store - Zustand]
+        RS[Resume Store - Zustand]
+        API[API Client - Axios]
+        PDF[PDF Renderer - @react-pdf]
+    end
+
+    subgraph "Backend (FastAPI)"
+        BE[Resume Generation API]
+    end
+
+    UI <--> CS
+    UI <--> RS
+    CS --> RS
+    RS --> PDF
+    RS --> API
+    API <--> BE
+```
+
+## 🔄 Application Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Chat as Chat Interface
+    participant Store as Zustand Store
+    participant Preview as Live Preview
+    participant API as Backend API
+    participant PDF as PDF Generator
+
+    User->>Chat: Provides Personal Info
+    Chat->>Store: Updates Resume Data
+    Store->>Preview: Triggers Re-render
+    Preview-->>User: Shows Live Change
+    
+    Note over User, Preview: Repeat for Experience, Skills, etc.
+
+    User->>Chat: Completes Final Step
+    Chat->>Store: Finalize Data
+    Store->>API: Send Data for Backend Processing
+    API-->>Store: Returns Processed Data/Blob
+    Store->>PDF: Generate Downloadable PDF
+    PDF-->>User: Triggers File Download
 ```
 
 ## 🌐 Integration
