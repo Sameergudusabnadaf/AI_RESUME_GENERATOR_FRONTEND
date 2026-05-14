@@ -29,23 +29,27 @@ A modern, interactive web application built with Next.js that guides users throu
 ## ⚙️ Setup & Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone <repository-url>
    cd AI_RESUME_GENERATOR_FRONTEND
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Configure Environment Variables**:
    Create a `.env.local` file in the root directory:
+
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:8000
    ```
 
 4. **Run the development server**:
+
    ```bash
    npm run dev
    ```
@@ -102,6 +106,12 @@ graph TD
 
 ## 🔄 Application Flow
 
+The following flowchart illustrates the user journey and data flow within the application.
+
+![Frontend Workflow](./flowchart.png)
+
+### Sequential Flow (Mermaid)
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -115,7 +125,7 @@ sequenceDiagram
     Chat->>Store: Updates Resume Data
     Store->>Preview: Triggers Re-render
     Preview-->>User: Shows Live Change
-    
+
     Note over User, Preview: Repeat for Experience, Skills, etc.
 
     User->>Chat: Completes Final Step
@@ -126,13 +136,22 @@ sequenceDiagram
     PDF-->>User: Triggers File Download
 ```
 
+## 📄 Generated PDF Documentation
+
+If you are unable to download the PDF files directly from the links provided by the assistant, you can find them in your local project directory:
+
+- **Frontend PDF**: `c:\Users\samee\OneDrive\Desktop\AI_RESUME_GENERATOR_FRONTEND\README.pdf`
+- **Backend PDF**: `c:\Users\samee\OneDrive\Desktop\AI_RESUME_GENERATOR_BACKEND\README.pdf`
+
+To open them, simply navigate to the folders in your File Explorer and double-click the files.
+
 ## 🌐 Integration
 
 This frontend is designed to work seamlessly with the [AI Resume Builder Backend](https://github.com/Yashwant-Rangrej/AI_RESUME_GENERATOR_BACKEND). Ensure the backend is running and the `NEXT_PUBLIC_API_URL` is correctly configured.
 
 ## 👨‍💻 Developed By
 
-**Yashwant Rangrej**
+**SAMEER**
+
 - [GitHub](https://github.com/Yashwant-Rangrej)
 - [LinkedIn](https://www.linkedin.com/in/yashwant-rangrej-0856993a8/)
-
